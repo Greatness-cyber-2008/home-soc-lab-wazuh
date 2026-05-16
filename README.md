@@ -16,38 +16,68 @@ I deployed Wazuh SIEM, configured a monitored agent, and integrated intrusion de
 
 ## 🏗️ What I Built
 Docker Compose
+
 Container deployment
+
 Kali Linux
+
 SIEM server host
+
 Ubuntu
+
 Monitored agent endpoint
+
 Suricata
+
 Network intrusion detection
+
 VirusTotal
+
 Threat intelligence
+
 VirtualBox
+
 Virtualisation
-💾 Resource Allocation
+
+**💾 Resource Allocation**
+
 VM
+
 RAM
+
 CPU
-Note
+
+**Note**
+
 Kali Linux (SIEM Server)
+
 4096 MB
+
 2 cores
 Always launch first
+
 Ubuntu (Agent)
+
 1024 MB
+
 1 core
+
 Launch after Kali
 
 ## ▶️ How to Start the Lab
+Open VirtualBox, start Kali first, then Ubuntu. Then run this on Kali:
 
 Bash
+cd ~/wazuh-docker/single-node
+sudo docker compose up -d
+
 Once the containers are up, open the Wazuh dashboard at https://192.168.56.102 and log in.
+
 All three containers must show as running before the dashboard is usable:
 wazuh.manager
+
 wazuh.indexer
+
 wazuh.dashboard
 
 ## 🔧 Problems I Hit and How I Fixed Them
@@ -55,14 +85,17 @@ This is the part most people skip. I'm including it because solving these taught
 
 **Problem 1 —** Docker Downloads Kept Cutting Out
 My hotspot was unstable and kept interrupting image pulls mid-download.
+
 Fix: Used docker compose pull and let it resume each time rather than restarting from scratch.
 
 **Problem 2 — Dashboard Wouldn't Load After Startup**
 The dashboard container was starting before the indexer was fully ready.
+
 Fix: Monitored the indexer logs with sudo docker logs wazuh.indexer to confirm it was fully up before opening the dashboard.
 
 **Problem 3 — Wazuh API Showing as Offline**
 The manager service wasn't fully initialised even though the container showed as running.
+
 Fix: Restarted the manager service directly:
 Bash
 **sudo docker exec -it wazuh.manager /var/ossec/bin/wazuh-control restart**
@@ -70,6 +103,7 @@ Then refreshed the dashboard and the API came back online.
 
 **Problem 4 — VMs Couldn't See Each Other**
 The default NAT adapter doesn't allow VM to VM communication.
+
 Fix: Switched both VMs to a Host-Only Adapter and assigned Kali a static IP of 192.168.56.102 on eth1. Agent connected immediately after.
 
 ## ✅ What This Lab Can Do
