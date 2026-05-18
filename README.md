@@ -177,7 +177,7 @@ I am a first-year student who does not want to wait until graduation to be usefu
 
 Cybersecurity Student · SOC Analyst in Training · Nigeria
 ## 📬 Connect With Me
-🌐 Hello.cv: [Add your Hello.cv link here]
+🌐 Hello.cv: [https://hello.cv/greatness-alawode]
 
 💼 LinkedIn: [https://www.linkedin.com/in/greatness-alawode-1071b62bb?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app]
 
